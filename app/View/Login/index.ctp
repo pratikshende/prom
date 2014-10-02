@@ -27,7 +27,7 @@
 <?php
 	}
 ?>
-<!-- html  -->
+<!-- html comment -->
 <div class="row">
   <div class="large-3 columns">
   	&nbsp;
