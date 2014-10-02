@@ -1,5 +1,5 @@
 <?php
-	$installation_root = $config["installation_root"];
+	// $installation_root = $config["installation_root"];
 ?>
 
 <?php
@@ -27,7 +27,7 @@
 <?php
 	}
 ?>
-
+<!-- html  -->
 <div class="row">
   <div class="large-3 columns">
   	&nbsp;
