@@ -1,0 +1,29 @@
+/* ToDo :: is this the best way to do it? as in with, position:absolute, and stuff*/
+/* ToDo :: this is not related just to SIS. This is the application thing. shift it to, application.css kinda. */
+#status_bar #fail {
+	position: absolute;
+	position: fixed;
+	top: 2%;
+	left: 40%;
+	z-index: 100;
+}
+
+#status_bar #success {
+	position: absolute;
+	position: fixed;
+	top: 2%;
+	left: 40%;
+	z-index: 100;
+}
+
+#status_bar #default {
+	position: absolute;
+	position: fixed;
+	top: 2%;
+	left: 40%;
+	z-index: 100;
+}
+
+.star {
+	color :red;
+}

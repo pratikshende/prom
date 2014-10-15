@@ -24,14 +24,7 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-//ToDo :: merge this portal_activated, in some global settings
-	$portal_activated = 0;
-
-	//ToDo :: make this more meaninful and maintainable
-	if($portal_activated) {
-		Router::connect('/', array('plugin' => 'Portal','controller' => 'Pages','action'=>'index'));
-	}
-	Router::connect('/admin/:controller/:action/*', array());
+	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */

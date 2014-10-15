@@ -34,11 +34,49 @@ class AppController extends Controller {
 
 	public $components = array(
 	    'DebugKit.Toolbar',
-	    'Auth'  => array(
+	    'Session',
+	    'Auth' => array(
 	    	'loginAction' => array(
 	    		'controller' => 'login',
-	    		'action'	 => 'index',
-	    		),
+	    		'action'     => 'index',
 	    	),
+	    	'loginRedirect' => array(
+	    		'controller' => 'login',
+	    		'action'     => 'index',
+	    	),
+	    	'authenticate' => array(
+	    		'Form' => array(
+	    			'fields' => array('username' => 'username', 'password' => 'password'),
+	    			'userModel' => 'User',
+	    			// 'passowrdHasher' => array(
+	    			// 	'className' => 'Simple',
+	    			// 	'hashType'  => 'sha256'
+	    			// 	)
+	    			// )
+	    		)
+	    	),
+	    	'authorize' => false,
+	    )	
 	);
+
+	public function beforeFilter() {
+
+		$controller = strtolower($this->request->params['controller']);
+		$action     = strtolower($this->request->params['action']);
+		$user_type  = AuthComponent::user('type');
+
+		if( $controller == 'login' ) {
+			if($action == 'create') {
+				if($user_type != 0) {
+					throw new ForbiddenException("Forbidden access. sorry :-( ");
+				}
+			}
+		} else if($controller == 'sci') {
+			if($user_type == 5) {
+				throw new ForbiddenException("Forbidden access. sorry :-( ");
+				// $this->redirect($this->Auth->loginRedirect);
+				// return;
+			}
+		}
+	}
 }

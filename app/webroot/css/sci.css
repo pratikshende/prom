@@ -1,0 +1,11 @@
+#sci_main #home {
+	display:visible;
+}
+
+#sci_main #register_service_center {
+	display: none;
+}
+
+#sci_main #list_service_center {
+	display: none;
+}
