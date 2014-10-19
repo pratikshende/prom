@@ -1,4 +1,8 @@
-<form target="" method="post" action="/prom/login/create">
+<?php
+	//ToDo :: maybe we can put this variable somwhere in the common function
+	$installation_root = Configure::read("installation_root");
+?>
+<form target="" method="post" action="<?php echo $installation_root; ?>/login/create">
 Username : <input type="text" name="data[User][username]"/>
 Password : <input type="text" name="data[User][password]"/>
 Type     : <select name="data[User][type]">

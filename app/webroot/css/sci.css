@@ -1,3 +1,15 @@
+#status_bar #fail {
+	display: none;
+}
+
+#status_bar #success {
+	display: none;
+}
+
+#status_bar #default {
+	display: none;
+}
+
 #sci_main #home {
 	display:visible;
 }

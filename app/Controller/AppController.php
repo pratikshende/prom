@@ -33,17 +33,17 @@ App::uses('Controller', 'Controller');
 class AppController extends Controller {
 
 	public $components = array(
-	    'DebugKit.Toolbar',
+	    // 'DebugKit.Toolbar',
 	    'Session',
 	    'Auth' => array(
 	    	'loginAction' => array(
 	    		'controller' => 'login',
 	    		'action'     => 'index',
 	    	),
-	    	'loginRedirect' => array(
-	    		'controller' => 'login',
-	    		'action'     => 'index',
-	    	),
+	    	// 'loginRedirect' => array(
+	    	// 	'controller' => 'login',
+	    	// 	'action'     => 'index',
+	    	// ),
 	    	'authenticate' => array(
 	    		'Form' => array(
 	    			'fields' => array('username' => 'username', 'password' => 'password'),
@@ -61,9 +61,24 @@ class AppController extends Controller {
 
 	public function beforeFilter() {
 
+		Configure::load('promechanix','inireader');
+
 		$controller = strtolower($this->request->params['controller']);
 		$action     = strtolower($this->request->params['action']);
 		$user_type  = AuthComponent::user('type');
+
+		$request_type = "";
+		if($this->request->is("GET")) {
+			$request_type = "GET";
+		} else if($this->request->is("POST")) {
+			$request_type = "POST";
+		} else if($this->request->is("PUT")) {
+			$request_type = "PUT";
+		} else if($this->request->is("DELETE")) {
+			$request_type = "DELETE";
+		}
+
+		// $perms = $this->Acl->fetch($controller,$action,$request_type);
 
 		if( $controller == 'login' ) {
 			if($action == 'create') {
@@ -77,6 +92,43 @@ class AppController extends Controller {
 				// $this->redirect($this->Auth->loginRedirect);
 				// return;
 			}
+		} else if( $controller == 'home') {
+			if($user_type == 5) {
+				throw new ForbiddenException("Forbidden access. sorry :-( ");
+			}
 		}
+
 	}
+
+	/*
+     * If you pass a delimeter then this function will return the date
+     * in 2013/07/15 format
+     * However if you don't pass the delimeter, then it will return the 
+     * date in 15th July, 2013 format
+     * */
+    public function convert_timestamp_to_date($timestamp, $delimiter=null) {
+        if ($delimiter != null) {
+            $date = getdate($timestamp);
+            $return = join($delimiter,
+                           array($date['year'],
+                           $date['mon'],
+                           $date['mday']));
+        } else {
+            $return = date("jS F Y",$timestamp);
+        }
+        return $return;
+    }
+
+    // year/month/day => timestamp
+    // ToDo :: here, yy/mm/dd is hard-coded. make it more generic,
+    // so that can be used anywhere..
+    public function convert_date_to_timestamp($date) {
+        preg_match('/(?P<year>\d+)\/(?P<month>\d+)\/(?P<day>\d+)/',
+                    $date,
+                    $parsed_date);
+        return mktime( 0, 0, 0, 
+                        $parsed_date['month'], 
+                        $parsed_date['day'], 
+                        $parsed_date['year'] );
+    }
 }

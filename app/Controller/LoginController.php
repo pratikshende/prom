@@ -12,7 +12,7 @@
 		public function index(){
 			if($this->request->is('POST')) {
 				if($this->Auth->login()) {
-					$this->redirect("/sci/home#home");
+					$this->redirect("/home");
 				} else {
 					$this->Session->setFlash("Invalid Username or Password");
 				}
