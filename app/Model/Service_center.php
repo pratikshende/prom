@@ -82,5 +82,86 @@ class Service_center extends AppModel {
   		'is_oncall_appointment_available'		=> 'Is On-Call Service Available',
   	);
 
+	var $validate = array(
+		'name'  								=> array(
+				'rule1'							=> array(
+					'rule'						=> 'notEmpty',
+					'message'					=> 'Name cannot be empty',
+					'required'					=> true,
+				),
+				'rule2'							=> array(
+					'rule'						=> '^[a-zA-Z][a-zA-Z0-9_]*\.?[a-zA-Z0-9_\.]*$',
+					'message'					=> 'Name can have only characters',
+					'required'					=> true,
+				),
+		),
+
+		'city'  								=> array(
+				'rule1'							=> array(
+					'rule'						=> 'notEmpty',
+					'message'					=> 'City cannot be empty',
+					'required'					=> true,
+				),
+				'rule2'							=> array(
+					'rule'						=> '^[A-Z][-a-zA-Z]+$',
+					'message'					=> 'City can have only alphabets',
+					'required'					=> true,
+				),
+		),
+		'state'  								=> array(
+				'rule1'							=> array(
+					'rule'						=> 'notEmpty',
+					'message'					=> 'State cannot be empty',
+					'required'					=> true,
+				),
+				'rule2'							=> array(
+					'rule'						=> '^[A-Z][-a-zA-Z]+$',
+					'message'					=> 'State can have only alphabets',
+					'required'					=> true,
+				),
+		),
+		'country'  								=> array(
+				'rule1'							=> array(
+					'rule'						=> 'notEmpty',
+					'message'					=> 'Country cannot be empty',
+					'required'					=> true,
+				),
+				'rule2'							=> array(
+					'rule'						=> '^[A-Z][-a-zA-Z]+$',
+					'message'					=> 'Country can have only alphabets',
+					'required'					=> true,
+				),
+		),
+		'pincode'  								=> array(
+				'rule1'							=> array(
+					'rule'						=> 'notEmpty',
+					'message'					=> 'Pincode cannot be empty',
+					'required'					=> true,
+				),
+				'rule2'							=> array(
+					'rule'						=> '^([0-9]{6})?$',
+					'message'					=> 'Pincode can have only six digits',
+					'required'					=> true,
+				),
+		),
+		'latitude'  							=> array(
+				'rule1'							=> array(
+					'rule'						=> '^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$',
+					'message'					=> 'Latitude can have one +, one -, and floating values only',
+					
+				),
+		),
+		'longitude'  							=> array(
+				'rule1'							=> array(
+					'rule'						=> '^[-+]?([1-8]?\d(\.\d+)?|90(\.0+)?),\s*[-+]?(180(\.0+)?|((1[0-7]\d)|([1-9]?\d))(\.\d+)?)$',
+					'message'					=> 'Longitude can have one +, one -, and floating values only',
+					
+				),
+		),
+
+
+
+	);
+
 }
 ?>
