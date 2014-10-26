@@ -6,7 +6,7 @@
 
 		public function beforeFilter() {
 			parent::beforeFilter();
-			// $this->layout = 'before_auth_default';
+			$this->layout = 'before_auth_default';
 		}
 
 		public function index(){

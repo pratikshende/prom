@@ -1,10 +1,64 @@
 <?php
-	//ToDo :: maybe we can put this variable somwhere in the common function
 	$installation_root = $config["installation_root"];
-	$site_title = $config["site_title"];	
 ?>
-<form target="" method="post" action="<?php echo $installation_root; ?>/login">
-Username : <input type="username" name="data[User][username]"/>
-Password : <input type="password" name="data[User][password]"/>
-<input type="submit" name="Login" value="Login"/>
-</form>
+
+<div class="row">
+  <div class="large-3 columns">
+  	&nbsp;
+  </div>
+  <div class="large-5 columns panel radius padding">
+    <?php //ToDo :: this is bad for plugability/modularity ?>
+  	<form target="" method="post" action="<?php echo $installation_root; ?>/login">
+
+
+  		<div class="row">
+          <div class="small-3 columns">
+            <label for="username" class="right inline">Username</label>
+          </div>
+
+          <div class="small-6 columns">
+              <input type="text" id="username" name="data[User][username]"/>
+          </div>
+
+          <div class="small-3 columns">
+              &nbsp;
+          </div>
+   	   </div>
+
+
+   	   <div class="row">
+          <div class="small-3 columns">
+            <label for="password" class="right inline">Password</label>
+          </div>
+
+          <div class="small-6 columns">
+              <input type="password" id="password" name="data[User][password]"/>
+          </div>
+
+          <div class="small-3 columns">
+              &nbsp;
+          </div>
+   	   </div>
+
+      <div class="row">
+        &nbsp;
+      </div>
+
+   	   <div class="row">
+   	   		<div class="small-3 columns">
+   	   			&nbsp;
+   	   		</div>
+	   	   <div class="small-8 columns">
+	   	   	<input type="submit" class="small button success" name="Login" value="Login"/>
+	   	   	<input type="reset" class="small button alert" name="Reset" value="Reset"/>
+	   	   </div>
+	   	   <div class="small-1 columns">
+   	   		</div>
+   	   </div>
+	
+	</form>
+  </div>
+  <div class="large-4 columns">
+  	&nbsp;
+  </div>
+</div>
