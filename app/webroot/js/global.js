@@ -36,7 +36,7 @@ var CircularList = function(objs) {
 //we instead of hard coding that link-name, we are encoding it
 //inside a function, so that we can change it very easily later.
 //now again, is this the best way to do it?
-var AdminBase = "ep-admin/";
+var AdminBase = "admin/";
 function getAdminUrl(path) {
 	return AdminBase+path;
 }

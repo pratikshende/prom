@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-
+	public $uses = array('Config');
 	public $components = array(
 	    // 'DebugKit.Toolbar',
 	    'Session',
@@ -40,10 +40,10 @@ class AppController extends Controller {
 	    		'controller' => 'login',
 	    		'action'     => 'index',
 	    	),
-	    	// 'loginRedirect' => array(
-	    	// 	'controller' => 'login',
-	    	// 	'action'     => 'index',
-	    	// ),
+	    	'loginRedirect' => array(
+	    		'controller' => 'login',
+	    		'action'     => 'index',
+	    	),
 	    	'authenticate' => array(
 	    		'Form' => array(
 	    			'fields' => array('username' => 'username', 'password' => 'password'),
@@ -97,7 +97,7 @@ class AppController extends Controller {
 				throw new ForbiddenException("Forbidden access. sorry :-( ");
 			}
 		}
-
+		$this->set('config',$this->Config->getAll());
 	}
 
 	/*

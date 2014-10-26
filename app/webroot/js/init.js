@@ -44,7 +44,7 @@ var AppView = Backbone.View.extend({
 				window.app.approuter.route(index,"some_name",all_routes[index]);
 			}
 		}
-		setInterval(checkConnection,2000);
+		// setInterval(checkConnection,2000);
 
 		//ToDo :: make the one with pushstate available
 		Backbone.history.start();
