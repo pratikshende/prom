@@ -2,6 +2,32 @@
 	$installation_root = $config["installation_root"];
 ?>
 
+<?php
+	$message = $this->Session->flash();
+	if($message) {
+?>
+
+<div class="row">
+	<div class="large-3 columns">
+		&nbsp;
+	</div>
+
+	<div class="large-5 columns">
+		<div data-alert="" class="alert-box alert round">
+			<?php echo $message; ?>
+			<a href="<?php echo "$installation_root/login"?>" class="close">×</a>
+		</div>
+	</div>
+
+	<div class="large-4 columns">
+		&nbsp;
+	</div>
+</div>
+
+<?php
+	}
+?>
+
 <div class="row">
   <div class="large-3 columns">
   	&nbsp;
