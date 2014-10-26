@@ -112,5 +112,5 @@ CakePlugin::load('Mongodb');
 App::uses('IniReader', 'Configure');
 Configure::config('inireader',new IniReader());
 // CakePlugin::load('Portal');
-// Configure::load("modules");
+Configure::load("modules");
 // Configure::load("permissions");

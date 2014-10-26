@@ -1,0 +1,1 @@
+<input type="hidden" id="_config_service_center_name" val="<?php echo $config["service_center_name"]; ?>" />

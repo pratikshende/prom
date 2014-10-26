@@ -1,110 +1,124 @@
+<?php
+  $installation_root = $config["installation_root"];
+?>
+
 <div id="application">
 
 	<div id="status_bar" class="row">
 	    <div class="large-10 columns">
-	        <div class="large-5  small-offset-3 columns">
-	            <div data-alert class="alert-box alert round" id="fail">
-	                <a href="#" class="close">&times;</a>
-	            </div>
-	            <div data-alert class="alert-box success round" id="success">
-	                <a href="#" class="close">&times;</a>
-	            </div>
-	            <div data-alert class="alert-box round" id="default">
-	                <a href="#" class="close">&times;</a>
-	            </div>
+	        <div class="large-5  small-offset-3 columns" id="container">
 	        </div>
 	    </div>
 	</div>
-	<div id="sci_main">
-		<div id="home">
+
+	<?php 
+		$keys = array_keys($activated_modules);
+
+		$place = array();
+		for ($i=0; $i < 10; $i++) { 
+			$place[$i] = null;
+		}
+		$i = 0;
+		foreach ($keys as &$key) {
+			$place[$i] = $key;
+			$i++;
+		}
+	?>
+	<div class="large-9 columns">
+		<div id="top">
 			<div class="row">
-				<div class="large-12 columns">
-					<h3>Service Center Information System</h3>
-					<hr />
+				<div class="large-4 columns">
+					<?php 
+						if($place[0]) {
+							include("$place[0]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[1]) {
+							include("$place[1]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[2]) {
+							include("$place[2]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[3]) {
+							include("$place[3]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[4]) {
+							include("$place[4]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[5]) {
+							include("$place[5]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[6]) {
+							include("$place[6]_header.ctp");
+						}
+					?>
+				</div>
+
+				<div class="large-4 columns">
+					<?php 
+						if($place[7]) {
+							include("$place[7]_header.ctp");
+						}
+					?>
 				</div>
 			</div>
-
-			<div class="row">
-				<div class="large-10 columns">
-					<h3><a href="#sci/list_service_centers" id="list_service_centers">List of Service Centers</h3>
-				</div>
-			</div>
-
-
-		  <div class="row">
-		    <div class="large-10 columns">
-		      <h3><a href="#sci/register_service_center" id="register_service_center">Register a Service Center</a></h3>
-		    </div>
-		  </div>
-		</div>
-		
-		<div id="register_service_center">
-			<div class="row">
-				<div class="large-12 columns">
-					<h3>Service Center Information System</h3>
-					<hr />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="large-10 columns">
-					<h3>Register</h3>
-					<form id="">
-						<fieldset>
-							<legend>Service Center Details</legend>
-							<div class="row">
-				              <div class="small-3 columns">
-				                <label for="service_center_name" class="right inline">Name</label>
-				              </div>
-
-				              <div class="small-9 columns">
-				                <input type="text" value="" id="service_center_name" />
-				              </div>
-				            </div>
-				            <div class="row">
-				              <div class="small-3 columns">
-				                <label for="service_center_address" class="right inline">Address</label>
-				              </div>
-
-				              <div class="small-9 columns">
-				                <input type="text" value="" id="service_center_address" />
-				              </div>
-				            </div>
-						</fieldset>
-					</form>
-					<a href="#" id="btn_register_service_center"class="small button">Register</a>
-				</div>
-			</div>
-		</div>
-
-		<div id="list_service_centers">
-			<div class="row">
-				<div class="large-12 columns">
-					<h3>Service Center Information System</h3>
-					<hr />
-				</div>
-			</div>
-
-			<div class="row">
-				<div class="large-10 columns">
-					<h3>List of Service Centers</h3>
-		            <form action="" method="GET">
-		               	<div class="row">
-	                    	<div class="small-3 columns">
-	                        	<label for="service_center_name" class="right inline">Name</label>
-	                    	</div>
-
-	                    	<div class="small-6 columns">
-	                        	<input type="text" id="service_center_name" name="service_center_name" value="Pratik Shende"/>
-	                    	</div>
-
-	                    	<div class="small-3 columns">
-	                        	<input type="submit" class="small button" name="search" value="Search"/>
-	                    	</div>
-		                </div>
-		            </form>
-				</div>
-			</div>
+			<?php
+				include("global.ctp");
+				$keys = array_keys($activated_modules);
+				foreach ($keys as &$key) {
+					include("$key.ctp");
+				}
+			?>
 		</div>
 	</div>
 </div>	
+
+<script type="text/template" id="tmpl_status_bar_success">
+  <div data-alert class="alert-box success round" id="success">
+      <%= message %>
+      <a href="#" class="close">&times;</a>
+  </div>
+</script>
+
+<script type="text/template" id="tmpl_status_bar_fail">
+  <div data-alert class="alert-box alert round" id="fail">
+      <%= message %>
+      <a href="#" class="close">&times;</a>
+  </div>  
+</script>
+
+<script type="text/template" id="tmpl_status_bar_default">
+  <div data-alert class="alert-box alert round" id="default">
+      <%= message %>
+      <a href="#" class="close">&times;</a>
+  </div>
+</script>

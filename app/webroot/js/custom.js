@@ -1,4 +1,4 @@
-Foundation.libs.abide.pathshala = function(forms) {
+Foundation.libs.abide.promechanix = function(forms) {
   var self = this;
   forms.attr('novalidate', 'novalidate');
 
