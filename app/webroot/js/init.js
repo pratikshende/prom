@@ -7,16 +7,16 @@ var AppRouter = Backbone.Router.extend({
 
 function checkConnection() {
 	jQuery.ajax({url : getAdminUrl('check/c?_='+Math.random()),method:"GET"})
-					.fail(function(){
-							window.onceoffline = 1;
-							window.app.appview.statusview.add_status("fail","Seems you are offline now! Please connect to the internet");
-						})
-					.success(function(){
-							if(window.onceoffline == 1) {
-								window.app.appview.statusview.add_status("success","Great! You are now connected to internet");
-								window.onceoffline = 0;
-							}
-						});
+		.fail(function(){
+				window.onceoffline = 1;
+				window.app.appview.statusview.add_status("fail","Seems you are offline now! Please connect to the internet");
+			})
+		.success(function(){
+			if(window.onceoffline == 1) {
+				window.app.appview.statusview.add_status("success","Great! You are now connected to internet");
+				window.onceoffline = 0;
+			}
+		});
 }
 
 //*****************************************************************************
@@ -44,7 +44,7 @@ var AppView = Backbone.View.extend({
 				window.app.approuter.route(index,"some_name",all_routes[index]);
 			}
 		}
-		// setInterval(checkConnection,2000);
+		setInterval(checkConnection,2000);
 
 		//ToDo :: make the one with pushstate available
 		Backbone.history.start();

@@ -31,7 +31,7 @@ App::uses('Controller', 'Controller');
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
 class AppController extends Controller {
-	public $uses = array('Config');
+	public $uses = array('Config','Acl');
 	public $components = array(
 	    // 'DebugKit.Toolbar',
 	    'Session',
@@ -40,22 +40,22 @@ class AppController extends Controller {
 	    		'controller' => 'login',
 	    		'action'     => 'index',
 	    	),
-	    	'loginRedirect' => array(
-	    		'controller' => 'login',
-	    		'action'     => 'index',
-	    	),
-	    	'authenticate' => array(
-	    		'Form' => array(
-	    			'fields' => array('username' => 'username', 'password' => 'password'),
-	    			'userModel' => 'User',
-	    			// 'passowrdHasher' => array(
-	    			// 	'className' => 'Simple',
-	    			// 	'hashType'  => 'sha256'
-	    			// 	)
-	    			// )
-	    		)
-	    	),
-	    	'authorize' => false,
+	    	// 'loginRedirect' => array(
+	    	// 	'controller' => 'login',
+	    	// 	'action'     => 'index',
+	    	// ),
+	    	// 'authenticate' => array(
+	    	// 	'Form' => array(
+	    	// 		'fields' => array('username' => 'username', 'password' => 'password'),
+	    	// 		'userModel' => 'User',
+	    	// 		// 'passowrdHasher' => array(
+	    	// 		// 	'className' => 'Simple',
+	    	// 		// 	'hashType'  => 'sha256'
+	    	// 		// 	)
+	    	// 		// )
+	    	// 	)
+	    	// ),
+	    	// 'authorize' => false,
 	    )	
 	);
 
@@ -66,6 +66,11 @@ class AppController extends Controller {
 		$controller = strtolower($this->request->params['controller']);
 		$action     = strtolower($this->request->params['action']);
 		$user_type  = AuthComponent::user('type');
+
+		$user_type  = AuthComponent::user('type');
+		if($user_type==null) {
+			$user_type = -1;
+		}
 
 		$request_type = "";
 		if($this->request->is("GET")) {
@@ -78,7 +83,7 @@ class AppController extends Controller {
 			$request_type = "DELETE";
 		}
 
-		// $perms = $this->Acl->fetch($controller,$action,$request_type);
+		$perms = $this->Acl->fetch($controller,$action,$request_type);
 
 		if( $controller == 'login' ) {
 			if($action == 'create') {

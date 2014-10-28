@@ -60,7 +60,7 @@ var SciView = Backbone.View.extend({
 	},
 	open_register_service_center : function() {
 		this.trigger("hide_everyone");
-		this.register_service_center.show();
+		this.$("#register_service_center").show();
 	},
 	open_list_service_center : function() {
 		this.trigger("hide_everyone");
