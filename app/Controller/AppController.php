@@ -136,4 +136,18 @@ class AppController extends Controller {
                         $parsed_date['day'], 
                         $parsed_date['year'] );
     }
+
+    public function makeNewToken($user_id,$time) {
+    	$salt = $this->randomSaltGenerator();
+    	return hash('sha256',"$user_id:$time:$salt");
+    }
+
+    public function randomSaltGenerator() {
+    	$string = '';
+    	$base = 'abcdefghijklmnopqrstuvwxyz0123456789,./;"[]-=<>?:{}_+ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    	for($i=0;$i<40;$i++) {
+    		$string .=$base[mt_rand(0,strlen($base)-1)]; 
+    	}
+    	return $string.mt_rand().mt_rand().mt_rand();
+    }
 }
