@@ -2,7 +2,7 @@
 	
 	class LoginController extends AppController {
 		public $helpers = array('Html','Form');
-		public $uses = array('User');
+		public $uses = array('User','Login','Token','Config');
 
 		public function beforeFilter() {
 			parent::beforeFilter();
@@ -12,9 +12,40 @@
 		public function index(){
 			if($this->request->is('POST')) {
 				if($this->Auth->login()) {
-					$this->redirect("/home");
+					$user = $this->Auth->user();
+					$user_id = $user["id"];
+					$time = time();
+		
+					$this->Login->insertLogin($this->request->clientIp(),1);
+
+					if (!$this->Token->getValidTokenByUserID($user_id)) {
+						$newToken = $this->makeNewToken($user_id,time());
+						if(!$this->Token->insertNewTokenByUserId($user_id,$newToken,$time)) {
+							//ToDo :: if we fail to add a new Token into the database,
+							//then break the whole thing. don't let user get in.
+							throw new ForbiddenException("Forbidden access. sorry :-( ");
+						}
+					}
+				
+					//ToDo :: is this the best way to do it?
+					$types = $this->Config->getByName("user_types");
+		
+					$user_type = json_decode($types,true);
+					print_r($user_type);
+					if($user["type"] == $user_type["sc"]) {
+						$this->redirect("/schome");
+					} else if($user["type"] == $user_type["employee"]){
+						$this->redirect("/ehome");
+					} else if($user["type"] == $user_type["admin"]) {
+						$this->redirect("/home");
+					}
 				} else {
-					$this->Session->setFlash("Invalid Username or Password");
+					$this->Login->insertLogin($this->request->clientIp(),0);
+					/*ToDo :: Customize this! See what's inside setFlash*/
+					/*ToDo :: we should store somekind of log, for wrong password, attempts
+							  in some database
+					*/
+					$this->Session->setFlash("Invalid login. Please try again !");
 				}
 			} else {
 				//add an image captcha
@@ -40,8 +71,19 @@
 		}
 
 		public function logout() {
+			/* ToDo :: Take user history somewhere, for logging and debugging and security purposes */
+			$user = $this->Auth->user();
+			$user_id = $user["id"];
+
+			$time = time();
+			if ($this->Token->getValidTokenByUserID($user_id)) {
+			if($this->Token->invalidateTokenByUserId($user_id,$time)) {
+				} else {
+					//ToDo :: is this right to that here?
+					throw new ForbiddenException("Forbidden access. sorry :-( ");
+				}
+			}
 			$this->redirect($this->Auth->logout());
-			$this->redirect("sci/home#home");
 		}
 	}
 ?>
