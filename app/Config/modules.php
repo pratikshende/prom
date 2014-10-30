@@ -13,6 +13,10 @@
 				"js" 			=> array("report.js"),
 				"css"			=> array("report.css"),
 			),
+			"car_specs" => array(
+				"js"			=> array("car_specs.js"),
+				"css"			=> array("car_specs.css"), 
+			),       
 		),
 	);
 ?>

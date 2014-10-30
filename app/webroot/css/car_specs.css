@@ -1,0 +1,19 @@
+#car_specs_main #register_car_specs {
+	display: none;
+}
+
+#car_specs_main #home {
+	display: none;
+}
+
+#car_specs_main #car_specs_bulk_import {
+	display: none;
+}
+
+#car_specs_main #list_car_specs {
+	display: none;
+}
+
+#car_specs_main #car_specs_bulk_import #excel_upload {
+	display: none;
+}

@@ -15,7 +15,7 @@ class HomeController extends AppController {
 		//ToDo :: even these names of the components should not be hard-coded. even these names, should
 		//come automatically
 
-		$modules = array('sci'=>1,'hrm'=>1,'report'=>1);
+		$modules = array('sci'=>1,'hrm'=>1,'report'=>1,'car_specs'=>1);
 
 
 		$activated_modules = array();

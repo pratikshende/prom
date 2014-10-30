@@ -82,14 +82,21 @@
                     </ul>
                   </li>
                   <?php } ?>
-
+                  <?php if(array_key_exists('car_specs', $activated_modules)) { ?>
+                  <li><a href='#'><span> Car Specs</span></a>
+                      <ul>
+                         <li><a href='#car_specs/list_car_specs'><span>List of Cars</span></a></li>
+                         <li><a href='#car_specs/register_car_specs'><span>Register a Car</span></a></li>
+                      </ul>
+                   </li>
+                 <?php } ?>
               </ul>
             </div>
             
     </div>
     
     <div class="large-9 columns" style="padding-top:2.5em;">
-        <div id="top" >
+        <div id="top">
           <div class="row">
 
             <div class="large-4 columns">
