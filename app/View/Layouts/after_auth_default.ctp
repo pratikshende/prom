@@ -25,18 +25,19 @@
 
 	<?php echo $this->fetch('content'); ?>
 
-  <?php echo $this->Html->script('jquery-1.9.1.js')?>
-  <?php echo $this->Html->script('jquery-ui-1.10.3.custom.js')?>
-  <?php echo $this->Html->script('vendor/custom.modernizr.js')?>
-  <?php echo $this->Html->script('underscore.js'); ?>
-  <?php echo $this->Html->script('backbone.js'); ?>
-  <?php echo $this->Html->script('foundation.min.js'); ?>
-  <?php echo $this->Html->script('foundation/foundation.js'); ?>
-  <?php echo $this->Html->script('foundation/foundation.abide.js'); ?>
-  <?php echo $this->Html->script('foundation/foundation.reveal.js'); ?>
-  <?php echo $this->Html->script('foundation/foundation.topbar.js'); ?>
-  <?php echo $this->Html->script('foundation/foundation.dropdown.js'); ?>
-  
+  <?php echo $this->Html->script('jquery-1.9.1.js');
+  echo $this->Html->script('jquery-ui-1.10.3.custom.js');
+  echo $this->Html->script('vendor/custom.modernizr.js');
+  echo $this->Html->script('underscore.js');
+  echo $this->Html->script('backbone.js'); 
+  echo $this->Html->script('foundation.min.js');
+  echo $this->Html->script('foundation/foundation.js');
+  echo $this->Html->script('foundation/foundation.abide.js');
+  echo $this->Html->script('foundation/foundation.reveal.js');
+  echo $this->Html->script('foundation/foundation.topbar.js');
+  echo $this->Html->script('foundation/foundation.dropdown.js');
+  echo $this->Html->script('uploader/jquery.iframe-transport.js');
+  echo $this->Html->script('uploader/jquery.fileupload.js'); ?>
   <?php foreach ($js as $file) {
      echo $this->Html->script($file);
    }
